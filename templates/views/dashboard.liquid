@@ -20,6 +20,10 @@
             }
         </script>
 
+        <script>
+            {% include "@noctuatech/uswds/assets/uswds.min.js" %}
+        </script>
+        
         <title>Document</title>
     </head>
 
@@ -64,6 +68,10 @@
                     left: 0;
                     bottom: 0;
                     right: 0;
+                }
+
+                :not(:defined) {
+                    background: none;
                 }
 
                 @keyframes spinner {

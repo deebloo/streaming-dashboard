@@ -7,7 +7,10 @@ import { stream } from "hono/streaming";
 import { Liquid } from "liquidjs";
 
 const liquid = new Liquid({
-  root: [path.resolve(import.meta.dirname, "../templates")],
+  root: [
+    path.resolve(import.meta.dirname, "../templates"),
+    path.resolve(import.meta.dirname, "../node_modules"),
+  ],
   extname: ".liquid",
   cache: true,
 });
@@ -18,6 +21,7 @@ const app = new Hono();
 
 app.use("/assets/**", serveStatic({ root: "./" }));
 app.use("/node_modules/@joist/**", serveStatic({ root: "./" }));
+app.use("/node_modules/@noctuatech/**", serveStatic({ root: "./" }));
 app.use("/node_modules/tslib/**", serveStatic({ root: "./" }));
 app.use("/target/components/**", serveStatic({ root: "./" }));
 
@@ -38,7 +42,9 @@ app.get("/", (ctx) => {
       await stream.sleep(Math.floor(Math.random() * (1000 - 500 + 1) + 500));
       await stream.writeln(
         /*html*/ `
-          <div slot="content-${slot}">HELLO WORLD - ${slot}</div>
+          <div slot="content-${slot}">
+            <div>HELLO WORLD - ${slot}</div>
+          </div>
         `,
       );
     }
