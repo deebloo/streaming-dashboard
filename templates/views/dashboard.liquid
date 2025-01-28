@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/styles.css" />
+
+        <script type="importmap">
+            {
+              "imports": {
+                "@joist/di": "/node_modules/@joist/di/target/lib.js",
+                "@joist/di/": "/node_modules/@joist/di/target/lib/",
+                "@joist/element": "/node_modules/@joist/element/target/lib.js",
+                "@joist/element/": "/node_modules/@joist/element/target/lib/",
+                "@joist/observable": "/node_modules/@joist/observable/target/lib.js",
+                "@joist/observable/": "/node_modules/@joist/observable/target/lib/",
+                "tslib": "/node_modules/tslib/tslib.es6.js"
+              }
+            }
+        </script>
+
+        <title>Document</title>
+    </head>
+
+    <body>
+        <template shadowrootmode="open">
+            <style>
+                main {
+                    display: flex;
+                }
+
+                .content {
+                    padding: 2rem;
+                    display: grid;
+                    flex-grow: 1;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    gap: 1rem;
+                }
+
+                .dashboard-card {
+                    border: solid 1px #a6a2a2;
+                    padding: 1rem 2rem;
+                    border-radius: 5px;
+                    min-height: 150px;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .dashboard-card:nth-child(4n) {
+                    grid-column: span 3;
+                    min-height: 250px;
+                }
+
+                .dashboard-card:last-child {
+                    grid-column: span 2;
+                }
+
+                .loading {
+                    background: #f3f3f3;
+                    padding: 1rem 2rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                }
+
+                @keyframes spinner {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+                    
+                .loading::before {
+                    content: "";
+                    box-sizing: border-box;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 50px;
+                    height: 50px;
+                    margin-top: -25px;
+                    margin-left: -25px;
+                    border-radius: 50%;
+                    border: 2px solid #ccc;
+                    border-top-color: #000;
+                    animation: spinner 600ms linear infinite;
+                }
+            </style>
+
+            <div style="height: 0; width: 0; overflow: hidden;" aria-hidden="true">
+                Safari Streaming Hacl: \u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b\u200b
+            </div>
+
+            <slot name="heading"></slot>
+            
+            <main>
+                <aside>
+                    <slot name="aside"></slot>
+                </aside>
+                
+                <div class="content">
+                    <div class="dashboard-card">
+                        <slot name="content-1">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <slot name="content-2">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <slot name="content-3">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <slot name="content-4">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <slot name="content-5">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <slot name="content-6">
+                            <div class="loading"></div>
+                        </slot>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <slot name="footer"></slot>
+            </footer>
+        </template>
+
+        <header slot="heading">Hello World</header>
+
+        <ul slot="aside">
+            <li>first</li>
+            <li>second</li>
+            <li>third</li>
+            <li>fourth</li>
+        </ul>
+    </body>
+</html>
