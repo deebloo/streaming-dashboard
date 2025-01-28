@@ -1,0 +1,73 @@
+main {
+  display: flex;
+  min-height: calc(100vh - 50px);
+}
+
+aside {
+  margin-left: 1rem;
+}
+
+.content {
+  padding: 2rem;
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.dashboard-card {
+  border: solid 1px lightgray;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  min-height: 150px;
+  position: relative;
+}
+
+.dashboard-card:first-child {
+  grid-row: span 2;
+}
+
+.dashboard-card:nth-child(4) {
+  grid-column: span 2;
+  min-height: 250px;
+}
+
+.dashboard-card:nth-child(5) {
+  grid-column: span 2;
+}
+
+.content-slot::slotted(*) {
+  animation: contentEnter 0.5s;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  padding: 1rem 2rem;
+  position: absolute;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.loading::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinner 600ms linear infinite;
+}
