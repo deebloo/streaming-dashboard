@@ -28,6 +28,14 @@
     </head>
 
     <body>
+        <style>
+            @keyframes contentEnter {
+                from {
+                    opacity: 0;
+                }
+            }
+        </style>
+
         <template shadowrootmode="open">
             <style>
                 main {
@@ -43,16 +51,20 @@
                 }
 
                 .dashboard-card {
-                    border: solid 1px #a6a2a2;
+                    border: solid 1px lightgray;
                     padding: 1rem 2rem;
                     border-radius: 5px;
                     min-height: 150px;
                     position: relative;
-                    overflow: hidden;
                 }
 
+                .dashboard-card:first-child{
+                    grid-row: span 2;
+                }
+
+
                 .dashboard-card:nth-child(4n) {
-                    grid-column: span 3;
+                    grid-column: span 2;
                     min-height: 250px;
                 }
 
@@ -61,13 +73,17 @@
                 }
 
                 .loading {
-                    background: #f3f3f3;
                     padding: 1rem 2rem;
                     position: absolute;
+                    border-radius: 5px;
                     top: 0;
                     left: 0;
                     bottom: 0;
                     right: 0;
+                }
+
+                .content-slot::slotted(*) {
+                    animation: contentEnter .5s;
                 }
 
                 :not(:defined) {
@@ -79,7 +95,7 @@
                         transform: rotate(360deg);
                     }
                 }
-                    
+
                 .loading::before {
                     content: "";
                     box-sizing: border-box;
@@ -110,37 +126,37 @@
                 
                 <div class="content">
                     <div class="dashboard-card">
-                        <slot name="content-1">
+                        <slot class="content-slot" name="content-1">
                             <div class="loading"></div>
                         </slot>
                     </div>
 
                     <div class="dashboard-card">
-                        <slot name="content-2">
+                        <slot class="content-slot" name="content-2">
                             <div class="loading"></div>
                         </slot>
                     </div>
 
                     <div class="dashboard-card">
-                        <slot name="content-3">
+                        <slot class="content-slot" name="content-3">
                             <div class="loading"></div>
                         </slot>
                     </div>
 
                     <div class="dashboard-card">
-                        <slot name="content-4">
+                        <slot class="content-slot" name="content-4">
                             <div class="loading"></div>
                         </slot>
                     </div>
 
                     <div class="dashboard-card">
-                        <slot name="content-5">
+                        <slot class="content-slot" name="content-5">
                             <div class="loading"></div>
                         </slot>
                     </div>
 
                     <div class="dashboard-card">
-                        <slot name="content-6">
+                        <slot class="content-slot" name="content-6">
                             <div class="loading"></div>
                         </slot>
                     </div>

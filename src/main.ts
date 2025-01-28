@@ -42,7 +42,7 @@ app.get("/", (ctx) => {
       await stream.sleep(Math.floor(Math.random() * (1000 - 500 + 1) + 500));
       await stream.writeln(
         /*html*/ `
-          <div slot="content-${slot}">
+          <div class="content-content" slot="content-${slot}">
             <div>HELLO WORLD - ${slot}</div>
           </div>
         `,
