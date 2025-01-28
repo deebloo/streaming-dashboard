@@ -28,18 +28,15 @@
     </head>
 
     <body>
-        <style>
-            @keyframes contentEnter {
-                from {
-                    opacity: 0;
-                }
-            }
-        </style>
-
         <template shadowrootmode="open">
             <style>
                 main {
                     display: flex;
+                    min-height: calc(100vh - 50px)
+                }
+
+                aside {
+                    margin-left: 1rem;
                 }
 
                 .content {
@@ -62,14 +59,23 @@
                     grid-row: span 2;
                 }
 
-
-                .dashboard-card:nth-child(4n) {
+                .dashboard-card:nth-child(4) {
                     grid-column: span 2;
                     min-height: 250px;
                 }
 
-                .dashboard-card:last-child {
+                .dashboard-card:nth-child(5) {
                     grid-column: span 2;
+                }
+
+                .content-slot::slotted(*) {
+                    animation: contentEnter .5s;
+                }
+
+                @keyframes spinner {
+                    to {
+                        transform: rotate(360deg);
+                    }
                 }
 
                 .loading {
@@ -80,20 +86,6 @@
                     left: 0;
                     bottom: 0;
                     right: 0;
-                }
-
-                .content-slot::slotted(*) {
-                    animation: contentEnter .5s;
-                }
-
-                :not(:defined) {
-                    background: none;
-                }
-
-                @keyframes spinner {
-                    to {
-                        transform: rotate(360deg);
-                    }
                 }
 
                 .loading::before {
