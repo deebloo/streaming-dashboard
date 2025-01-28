@@ -34,7 +34,7 @@ app.get("/", (ctx) => {
     slots.sort(() => Math.floor(Math.random() * 100) - Math.floor(Math.random() * 100));
     
     for(const slot of slots) {
-      await stream.sleep(1000);
+      await stream.sleep(Math.floor(Math.random() * (1000 - 500 + 1) + 500));
       await stream.writeln(/*html*/`<div slot="content-${slot}">HELLO WORLD - ${slot}</div>`)
     }
 
